@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
       - name: Check out code
         uses: actions/checkout@v4
 
@@ -23,3 +28,12 @@ jobs:
 
       - name: Build app
         run: ./scripts/buildprod.sh
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v2'
+
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
+
+      - name: GoogleCloud Build
+        run: gcloud builds submit --tag us-central1-docker.pkg.dev/peaceful-harbor-462009-t4/notely-ar-repo/notely:latest .
