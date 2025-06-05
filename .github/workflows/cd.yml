@@ -29,11 +29,11 @@ jobs:
       - name: Build app
         run: ./scripts/buildprod.sh
 
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v2'
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
 
-      - name: 'Use gcloud CLI'
-        run: 'gcloud info'
+      - name: Use gcloud CLI
+        run: gcloud info
 
       - name: GoogleCloud Build
         run: gcloud builds submit --tag us-central1-docker.pkg.dev/peaceful-harbor-462009-t4/notely-ar-repo/notely:latest .
