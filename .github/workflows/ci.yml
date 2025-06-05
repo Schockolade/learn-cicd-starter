@@ -28,3 +28,10 @@ jobs:
     steps:
       - name: Check Style new
         run: test -z $(go fmt ./...)
+
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+      
+      - name: Run staticcheck
+        run: staticcheck ./...
+        
