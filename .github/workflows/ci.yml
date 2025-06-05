@@ -33,10 +33,7 @@ jobs:
         run: go install honnef.co/go/tools/cmd/staticcheck@latest
 
       - name: Set PATH for GOPATH
-        run: echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc
-
-      - name: source bashrc
-        run: source ~/.bashrc
+        run: echo "::set-env PATH=$PATH:$GOPATH/bin"
       
       - name: Run staticcheck
         run: staticcheck ./...
