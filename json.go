@@ -30,5 +30,10 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 		return
 	}
 	w.WriteHeader(code)
-	w.Write(dat)
+	if _, err := w.Write(dat); err != nil {
+		log.Printf("Warning: .env does not exist: %s", err)
+		// Optionally, you might want to handle critical write errors differently,
+		// such as by alerting or triggering a retry mechanism, depending on context.
+	}
+
 }
